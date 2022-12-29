@@ -16,7 +16,7 @@
 - Spring Scheduler
 - mustache
 - BootStrap
-- javascript(비동기 처리)
+- Ajax
 - JUnit
 - 공공 데이터 오픈 API
 
