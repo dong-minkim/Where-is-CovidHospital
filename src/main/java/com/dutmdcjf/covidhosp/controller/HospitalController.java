@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -46,5 +47,13 @@ public class HospitalController {
     @ResponseBody
     public List<ItemDto> getHospitalsBySearch(String search) {
         return hospitalService.getHospitalBySearch(search);
+    }
+
+    @GetMapping("/map")
+    public String map(@RequestParam String yadmNm, @RequestParam String addr, Model model) {
+        model.addAttribute("yadmNm", yadmNm);
+        model.addAttribute("addr", addr);
+        System.out.println(addr);
+        return "map";
     }
 }
