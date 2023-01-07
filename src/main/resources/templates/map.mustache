@@ -28,10 +28,12 @@
     geocoder.addressSearch(addr, function (result, status) {
 
         if (status === kakao.maps.services.Status.OK) {
+            var latitude = result[0].y;
+            var longitude = result[0].x;
 
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            console.log(result[0].y);
-            console.log(result[0].x);
+            var coords = new kakao.maps.LatLng(latitude, longitude);
+            console.log(latitude);
+            console.log(longitude);
 
             var marker = new kakao.maps.Marker({
                 map: map,
@@ -40,7 +42,11 @@
 
             // 인포윈도우로 장소에 대한 설명을 표시
             var infowindow = new kakao.maps.InfoWindow({
-                content: '<div style="width:200px;text-align:center;padding:6px 0;"><b>{{yadmNm}}</b></div>'
+                content: '<div style="width:400px;padding:6px 0;margin: 10px;"><div style="text-align: left;font-size:25px;"><b>{{yadmNm}}</b></div><br>'
+                        + '<div style="text-align: left">{{addr}}</div>'
+                        + '<div style="text-align: left">{{tel}}</div>'
+                        + '<div style="width: 60px; float:right; color: blue; border-radius: 0.5em; text-align: center; border: solid 1px black; padding:6px 0; margin: 10px; cursor: pointer" '
+                        + 'onclick="location.href=`https://map.kakao.com/link/to/{{yadmNm}},' + latitude + ',' + longitude + '`;">길찾기</div></div>'
             });
             infowindow.open(map, marker);
 

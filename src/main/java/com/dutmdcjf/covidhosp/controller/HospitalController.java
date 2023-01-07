@@ -50,9 +50,10 @@ public class HospitalController {
     }
 
     @GetMapping("/map")
-    public String map(@RequestParam String yadmNm, @RequestParam String addr, Model model) {
+    public String map(@RequestParam String yadmNm, @RequestParam String addr, @RequestParam String diagBknPsblTelno, Model model) {
         model.addAttribute("yadmNm", yadmNm);
         model.addAttribute("addr", addr);
+        model.addAttribute("tel", diagBknPsblTelno);
         System.out.println(addr);
         return "map";
     }
